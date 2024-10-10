@@ -1,7 +1,9 @@
 # Ripytizioni
 Testo ed esempi presi da https://codegrind.it/documentazione/python
+Integrazione con il testo "Appunti di programmazione (scientifica) in Python" - FABIO AIOLLI
 
 ## Documentazione base
+Python e un linguaggio di programmazione ad alto livello, orientato agli oggetti. In Python e possibile programmare seguendo diversi paradigmi di programmazione: imperativo, funzionale, OOP.
 
 ### Esecuzione del Programma:
 Apri un editor di testo o un ambiente di sviluppo integrato (IDE) che supporti Python e scrivi il codice
@@ -90,6 +92,11 @@ Intero (int): Rappresenta numeri interi, positivi o negativi.
 Numero in Virgola Mobile (float): Rappresenta numeri decimali.
 
     numero_virgola_mobile = 3.14
+    
+Python codifica un numero complesso aggiungendo un suffisso j (o J)
+alla parte immaginaria.
+
+    numero_complesso_virgola_mobile = 3.12 + 3j
 
 Stringa (str): Rappresenta sequenze di caratteri.
 
@@ -118,6 +125,14 @@ Dizionario (dict): Rappresenta una mappa di chiavi e valori.
 Range (range): Rappresenta una sequenza di numeri.
 
     valori = range(0, 5)  # Genera una sequenza: 0, 1, 2, 3, 4
+
+| Tipo | Mutabile | Contenitore | Sequenza | Associativo | 
+|------|----------|-------------|----------|-------------|
+| Stringhe | NO | NO | SI | NO |
+| Tuple | NO | SI | SI | NO | 
+| Liste | SI | SI | SI | NO | 
+| Dizionari | SI | SI | NO | SI |
+| Insiemi | SI | SI | NO | NO |
 
 ### Casting
 Casting Implicito (Coercizione di Tipo):
@@ -1399,6 +1414,20 @@ https://codegrind.it/esercizi/python/math
 
 ## Algoritmi 
 ### Complessità computazionale
+La complessità computazionale rappresenta una misura dell’efficienza di un algoritmo nel risolvere un dato problema. Tale efficienza si puo misurare seguendo diverse dimensioni, quali il tempo di esecuzione o la memoria
+richiesta da un algoritmo.
+
+caso ottimo o migliore: nel quale i dati presentati sono i piu favorevoli per l’algoritmo;
+Ω(g(n)) che si legge “omega di g(n)” quando vogliamo dare una valutazione per il caso ottimo, ovvero per dire che la quantita di risorse richiesta cresce non meno di g(n) al crescere di n;
+
+caso pessimo o peggiore: nel quale i dati presentati sono i piu sfavorevoli per l’algoritmo;
+O(f(n)) che si legge “o di f(n)” quando vogliamo dare una valutazione per il
+caso pessimo, ovvero per dire che la quantita di risorse richiesta cresce non
+più di f(n) al crescere di n;
+
+caso medio: comportamento in media al variare dei dati possibili in ingresso.
+Θ(h(n)) che si legge “theta di h(n)” quando vogliamo dire che i casi ottimo e pessimo hanno simili prestazioni, ovvero che la quantita di risorse richiesta cresce come h(n) al crescere di n.
+
 ### Ordinamento
 ### Ricerca per chiave
 ### Backtracking
