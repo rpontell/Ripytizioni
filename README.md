@@ -1,5 +1,6 @@
 # Ripytizioni
 Testo ed esempi presi da https://codegrind.it/documentazione/python
+
 Integrazione con il testo "Appunti di programmazione (scientifica) in Python" - FABIO AIOLLI
 
 ## Documentazione base
