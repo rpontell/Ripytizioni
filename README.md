@@ -1068,3 +1068,339 @@ https://codegrind.it/esercizi/python/classi
 Ereditarietà
 https://codegrind.it/esercizi/python/ereditarieta
 
+## Moduli
+Un modulo in Python è un file che contiene definizioni di funzioni, classi e variabili. I moduli permettono di organizzare il codice in unità logiche e indipendenti.
+
+Per utilizzare un modulo in un altro file, è necessario importarlo. Ciò consente di accedere a tutte le definizioni all’interno del modulo.
+
+    import mio_modulo
+    
+    nome = "Alice"
+    saluto = mio_modulo.saluta(nome)
+    
+    print(saluto)
+    print(f"Pi greco è approssimativamente {mio_modulo.pi_greco}")
+
+### Modulo Math
+Il modulo math offre varie funzioni che coprono una vasta gamma di operazioni matematiche. Ecco alcune delle funzioni comuni:
+
+math.sqrt(x): Calcola la radice quadrata di x.
+math.exp(x): Calcola il valore esponenziale di x.
+math.log(x, base): Calcola il logaritmo naturale di x con una base specificata opzionalmente.
+math.sin(x), math.cos(x), math.tan(x): Calcola il seno, il coseno e la tangente trigonometrica di x.
+math.radians(x), math.degrees(x): Converti tra gradi e radianti.
+math.pi e math.e: Costanti per π (pi greco) e la base del logaritmo naturale (e).
+
+    import math
+    
+    # Calcola la radice quadrata
+    risultato_radice = math.sqrt(25)
+    print("Radice quadrata di 25:", risultato_radice)
+    
+    # Calcola il valore esponenziale
+    risultato_esponenziale = math.exp(2)
+    print("Valore esponenziale di 2:", risultato_esponenziale)
+    
+    # Calcola seno e coseno
+    angolo = math.radians(30)  # Converti gradi in radianti
+    risultato_seno = math.sin(angolo)
+    risultato_coseno = math.cos(angolo)
+    print("Seno di 30 gradi:", risultato_seno)
+    print("Coseno di 30 gradi:", risultato_coseno)
+
+Il modulo math fornisce anche funzioni avanzate come funzioni trigonometriche, logaritmiche, statistiche e speciali.
+
+    import math
+    
+    # Calcola il fattoriale
+    risultato_fattoriale = math.factorial(5)
+    print("Fattoriale di 5:", risultato_fattoriale)
+    
+    # Calcola il valore di π (pi greco)
+    valore_pi = math.pi
+    print("Valore di π:", valore_pi)
+    
+    # Calcola il massimo comune divisore (MCD)
+    risultato_mcd = math.gcd(30, 45)
+    print("MCD di 30 e 45:", risultato_mcd)
+
+### Modulo Random
+Il modulo random di Python fornisce strumenti per generare numeri casuali, mescolare sequenze, selezionare elementi casuali da una lista e molto altro.
+
+#### Funzioni Principali del Modulo random
+
+1. random.random(): Generare un Numero Decimale Casuale tra 0 e 1
+La funzione random.random() restituisce un numero in virgola mobile casuale compreso tra 0.0 e 1.0.
+
+        import random
+        
+        numero_casuale = random.random()
+        print(numero_casuale)  # Output: un numero tra 0.0 e 1.0
+
+2. random.randint(a, b): Generare un Numero Intero Casuale
+La funzione random.randint(a, b) restituisce un numero intero casuale compreso tra a e b (inclusi).
+
+        numero_intero = random.randint(1, 10)
+        print(numero_intero)  # Output: un numero intero tra 1 e 10 (incluso)
+
+3. random.choice(seq): Selezionare un Elemento Casuale da una Lista
+La funzione random.choice(seq) restituisce un elemento casuale da una sequenza, come una lista o una stringa.
+
+        lista = ['apple', 'banana', 'cherry ]
+        elemento_casuale = random.choice(lista)
+        print(elemento_casuale)  # Output: un elemento casuale dalla lista
+
+4. random.choices(population, k): Selezionare Più Elementi Casuali
+La funzione random.choices(population, k) seleziona una lista di k elementi casuali dalla sequenza population, con ripetizione.
+
+        frutti = ['apple', 'banana', 'cherry', 'orange']
+        scelte_casuali = random.choices(frutti, k=3)
+        print(scelte_casuali)  # Output: una lista di 3 elementi casuali dalla lista originale
+
+5. random.sample(population, k): Selezionare Più Elementi Casuali Senza Ripetizione
+La funzione random.sample(population, k) restituisce una lista di k elementi casuali dalla sequenza population, senza ripetizione.
+
+        frutti = ['apple', 'banana', 'cherry', 'orange']
+        campione_casuale = random.sample(frutti, k=2)
+        print(campione_casuale)  # Output: una lista di 2 elementi casuali senza ripetizione
+
+6. random.uniform(a, b): Generare un Numero Decimale Casuale tra Due Limiti
+La funzione random.uniform(a, b) restituisce un numero decimale casuale compreso tra a e b (inclusi).
+
+        decimale_casuale = random.uniform(1.5, 5.5)
+        print(decimale_casuale)  # Output: un numero decimale tra 1.5 e 5.5
+
+7. random.shuffle(seq): Mescolare una Lista
+La funzione random.shuffle(seq) mescola gli elementi di una lista in place.
+
+        frutti = ['apple', 'banana', 'cherry', 'orange']
+        random.shuffle(frutti)
+        print(frutti)  # Output: una lista con gli elementi in ordine casuale
+
+8. random.randrange(start, stop[, step]): Generare un Numero Intero con Intervallo
+La funzione random.randrange(start, stop[, step]) restituisce un numero intero casuale tra start e stop, con uno step opzionale. Il numero stop non è incluso nell’intervallo.
+
+        numero_intero = random.randrange(1, 10, 2)
+        print(numero_intero)  # Output: un numero intero tra 1 e 9 con step di 2
+
+#### Impostare un Seed con random.seed()
+Puoi utilizzare random.seed() per inizializzare il generatore di numeri casuali con un seed specifico. Questo ti permette di ottenere risultati riproducibili, utili per test o debug.
+
+Esempio di Utilizzo di random.seed()
+
+    random.seed(42)
+    print(random.random())  # Output: 0.6394267984578837
+    print(random.randint(1, 10))  # Output: 2
+
+In questo esempio, ogni volta che imposti il seed a 42, otterrai sempre gli stessi numeri casuali. Questo è utile quando desideri che l’esecuzione del programma produca lo stesso output ogni volta per scopi di testing.
+
+#### Distribuzioni Probabilistiche
+Il modulo random supporta anche la generazione di numeri casuali basati su diverse distribuzioni probabilistiche.
+
+1. random.gauss(mu, sigma): Distribuzione Normale (Gaussiana)
+La funzione random.gauss(mu, sigma) restituisce un numero casuale dalla distribuzione normale (gaussiana) con media mu e deviazione standard sigma.
+
+        numero_normale = random.gauss(0, 1)
+        print(numero_normale)  # Output: un numero casuale dalla distribuzione normale con media 0 e deviazione standard 1
+
+2. random.expovariate(lambd): Distribuzione Esponenziale
+La funzione random.expovariate(lambd) restituisce un numero casuale da una distribuzione esponenziale con parametro lambd.
+
+        numero_esponenziale = random.expovariate(1.5)
+        print(numero_esponenziale)  # Output: un numero casuale dalla distribuzione esponenziale
+
+## Modulo Sys
+Il modulo sys in Python fornisce varie funzioni e variabili per interagire direttamente con l’interprete Python e gestire il flusso di esecuzione del programma. Attraverso sys, puoi accedere agli argomenti passati da linea di comando, controllare l’input/output standard e ottenere informazioni sull’ambiente di runtime.
+
+### 1. sys.argv: Argomenti da Linea di Comando
+Una delle funzionalità principali di sys è la gestione degli argomenti passati da linea di comando. Gli argomenti vengono raccolti in una lista chiamata sys.argv.
+
+Esempio di Utilizzo di sys.argv
+
+    import sys
+    
+    # Stampa tutti gli argomenti
+    print(f"Argomenti da linea di comando: {sys.argv}")
+    
+    # Stampa solo il nome dello script
+    print(f"Nome dello script: {sys.argv[0]}")
+    
+    # Verifica se ci sono altri argomenti
+    if len(sys.argv) > 1:
+        print(f"Primo argomento: {sys.argv[1]}")
+    else:
+        print("Nessun argomento fornito.")
+
+Terminal window
+
+    $ python script.py argomento1 argomento2
+
+Output:
+
+    Argomenti da linea di comando: ['script.py', 'argomento1', 'argomento2']
+    Nome dello script: script.py
+    Primo argomento: argomento1
+
+In questo esempio, sys.argv\[0] contiene il nome dello script, mentre sys.argv\[1] e successivi contengono gli argomenti passati dall’utente.
+
+### 2. sys.exit(): Uscire dal Programma
+Puoi terminare l’esecuzione di un programma Python in qualsiasi momento utilizzando sys.exit(). Puoi anche specificare un codice di uscita: 0 indica una terminazione con successo, mentre qualsiasi altro valore indica un’uscita con errore.
+
+Esempio di Utilizzo di sys.exit()
+
+    import sys
+    
+    if len(sys.argv) < 2:
+        print("Errore: nessun argomento fornito.")
+        sys.exit(1)  # Uscita con codice di errore 1
+    
+    print("Programma eseguito correttamente.")
+
+Terminal window
+
+    $ python script.py
+
+Output:
+
+    Errore: nessun argomento fornito.
+
+In questo esempio, se non vengono forniti argomenti, il programma termina con un codice di errore (1).
+
+### 3. sys.stdin, sys.stdout e sys.stderr: Input e Output Standard
+Il modulo sys ti permette di accedere ai flussi di input e output standard attraverso le variabili sys.stdin, sys.stdout e sys.stderr. Puoi usarli per leggere l’input dall’utente o per scrivere messaggi su specifici canali di output.
+
+Esempio di Utilizzo di sys.stdin e sys.stdout
+
+    import sys
+    
+    # Legge l'input dall'utente utilizzando sys.stdin
+    print("Inserisci il tuo nome:")
+    nome = sys.stdin.readline().strip()
+    
+    # Scrive l'output su stdout
+    sys.stdout.write(f"Ciao, {nome}!\n")
+
+Esempio di Utilizzo di sys.stderr
+sys.stderr è usato per scrivere messaggi di errore. È separato da sys.stdout per distinguere l’output normale dagli errori.
+
+    import sys
+    
+    # Stampa un messaggio di errore
+    sys.stderr.write("Questo è un messaggio di errore.\n")
+
+Output:
+
+    Questo è un messaggio di errore.
+
+Puoi reindirizzare questi flussi su file o altre destinazioni per catturare l’output in modo personalizzato.
+
+### 4. sys.path: Percorso di Ricerca dei Moduli
+La variabile sys.path è una lista che contiene i percorsi dove Python cerca i moduli quando viene eseguito un import. Puoi modificare sys.path per aggiungere directory personalizzate e importare moduli da percorsi specifici.
+
+Esempio di Utilizzo di sys.path
+
+    import sys
+    
+    # Stampa i percorsi di ricerca dei moduli
+    print("Percorsi di ricerca dei moduli:")
+    for percorso in sys.path:
+        print(percorso)
+    
+    # Aggiungi un nuovo percorso
+    sys.path.append("/percorso/del/mio/modulo")
+
+In questo modo, puoi aggiungere directory personalizzate alla lista di ricerca dei moduli e rendere disponibili moduli esterni non installati nella directory predefinita.
+
+### 5. sys.version: Versione di Python
+La variabile sys.version fornisce informazioni dettagliate sulla versione di Python in esecuzione. Questo è utile per verificare la compatibilità di uno script con diverse versioni di Python.
+
+Esempio di Utilizzo di sys.version
+
+    import sys
+    
+    print(f"Versione di Python: {sys.version}")
+
+Output:
+
+    Versione di Python: 3.10.4 (default, Sep  11 2024, 10:00:00)
+    [GCC 9.3.0]
+
+### 6. sys.platform: Identificare il Sistema Operativo
+La variabile sys.platform contiene una stringa che identifica il sistema operativo su cui Python è in esecuzione. Questo è utile quando devi scrivere codice che si comporti in modo diverso su sistemi operativi diversi.
+
+Esempio di Utilizzo di sys.platform
+
+    import sys
+    
+    if sys.platform == "win32":
+        print("Stai eseguendo Python su Windows.")
+    elif sys.platform == "linux":
+        print("Stai eseguendo Python su Linux.")
+    elif sys.platform == "darwin":
+        print("Stai eseguendo Python su macOS.")
+    else:
+        print("Sistema operativo non riconosciuto.")
+
+Output su Windows:
+
+    Stai eseguendo Python su Windows.
+
+Output su Linux:
+
+    Stai eseguendo Python su Linux.
+
+### 7. sys.getsizeof(): Verificare la Dimensione di un Oggetto
+La funzione sys.getsizeof() restituisce la dimensione in byte di un oggetto in Python. Questa funzione è utile per ottimizzare l’uso della memoria e comprendere meglio l’impatto delle strutture dati nel programma.
+
+Esempio di Utilizzo di sys.getsizeof()
+
+    import sys
+    
+    lista = [1, 2, 3, 4, 5]
+    print(f"Dimensione della lista: {sys.getsizeof(lista)} byte")
+
+Output:
+
+    Dimensione della lista: 96 byte
+
+### 8. sys.modules: Moduli Importati
+La variabile sys.modules è un dizionario che contiene tutti i moduli attualmente importati nell’interprete Python. Può essere usata per verificare quali moduli sono stati importati e per ricaricare moduli in modo dinamico.
+
+Esempio di Utilizzo di sys.modules
+
+    import sys
+    
+    # Verifica se il modulo "math" è già stato importato
+    if "math" in sys.modules:
+        print("Il modulo math è già importato.")
+    else:
+        print("Il modulo math non è importato.")
+
+Output:
+
+    Il modulo math è già importato.
+
+### 9. sys.maxsize: Intero Massimo
+La variabile sys.maxsize rappresenta il valore massimo che un intero può assumere su una determinata piattaforma. È utile per definire limiti superiori nel codice.
+
+Esempio di Utilizzo di sys.maxsize
+
+    import sys
+    
+    print(f"Dimensione massima di un intero: {sys.maxsize}")
+
+Output:
+
+    Dimensione massima di un intero: 9223372036854775807
+
+## Esercizi moduli
+https://codegrind.it/esercizi/python/moduli
+https://codegrind.it/esercizi/python/math
+
+## Algoritmi 
+### Complessità computazionale
+### Ordinamento
+### Ricerca per chiave
+### Backtracking
+
+
