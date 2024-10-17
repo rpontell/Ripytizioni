@@ -94,7 +94,7 @@ Numero in Virgola Mobile (float): Rappresenta numeri decimali.
 
     numero_virgola_mobile = 3.14
     
-Python codifica un numero complesso aggiungendo un suffisso j (o J)
+Numero complesso (complex): aggiungendo un suffisso j (o J)
 alla parte immaginaria.
 
     numero_complesso_virgola_mobile = 3.12 + 3j
@@ -134,6 +134,9 @@ Range (range): Rappresenta una sequenza di numeri.
 | Liste | SI | SI | SI | NO | 
 | Dizionari | SI | SI | NO | SI |
 | Insiemi | SI | SI | NO | NO |
+
+Gerarchia tra Numeri: bool ⊂ int ⊂ float ⊂ complex
+Permette di identificare il tipo dell’oggetto risultato quando un operazione coinvolge numeri di natura diversa trasformando tutti i numeri coinvolti al tipo “piu grande”.
 
 ### Casting
 Casting Implicito (Coercizione di Tipo):
@@ -340,6 +343,49 @@ I numeri complessi sono rappresentati con la notazione a + bj dove a è la parte
     #Moltiplicazione
     moltiplicazione = a * b
     print(moltiplicazione)  # Output: (-5+10j)
+
+### Operazioni sulle sequenze
+L’assegmanento in linea di piu variabili ci permette di assegnare oggetti a più riferimenti contemporaneamente. La sintassi dell’assegnamento multiplo è
+
+    RIF1, RIF2, ... , RIFn = SEQ
+..............................
+
+    a,b,c = 1,2,3
+    a,c = c,a # scambia i valori diaec
+    a,b,c = "abc"
+    a,b,c,d = [1,-1,(4+2j,3),"aca"]
+
+Da ricordare che l'usod egli operatori + e * sulla stringhe è comunque considerato operazioni sulle sequenze.
+
+Data una sequenza s e un intero i, possiamo accedere al riferimento dell’ (i + 1)-esimo elemento della sequenza con l’operatore s\[i]
+
+    s = "abc"
+    s[2]
+    #OUT: c
+    l = [1,(’a’,’b’),3]
+    l[2]
+    #OUT: 3
+    l[1][1]
+    #OUT:b
+
+Quando parliamo di slicing di una stringa o di una sequenza in generale, intendiamo un modo per estrarre una porzione della sequenza. La sintassi dello slicing è
+
+    seq[start:end]
+    
+dove _seq_ è la sequenza che vogliamo tagliare, _start_ e la posizione del primo elemento che vogliamo ottenere, _end_ è la posizione successiva all’ultimo elemento che vogliamo ottenere. I valori start e end possono anche essere negativi.
+
+La sintassi dello striding è
+
+    seq[start:end:step]
+    
+e differisce dallo slicing solo perchè si aggiunge lo _step_ . Se è positivo si percorre la sequenza da sinistra a destra, se negativo è inverso, se non indicato è 1.
+
+Possiamo anche usare il comando del per cancellare da una sequenza una determinata sotto-sequenza indicata mediante indicizzazione, slicing o striding.
+
+    elle = [1,2,3,4,5,6]
+    del elle[1:-4] # elle -> [1, 3, 4, 5, 6]
+    del elle[2] # elle -> [1, 3, 5, 6]
+    del elle[::2] # elle -> [3, 6]
 
 ### Precedenza degli Operatori
 Ecco un ordine di precedenza generale per gli operatori aritmetici (dal più alto al più basso):
@@ -554,7 +600,7 @@ https://codegrind.it/esercizi/python/condizionali-if
 ## Cicli e Iterazioni
 
 ### Ciclo While
-consente di eseguire un blocco di codice ripetutamente fintanto che una certa condizione è vera. Questo tipo di ciclo è ideale quando il numero di iterazioni non è noto in anticipo. 
+consente di eseguire un blocco di codice ripetutamente fintanto che una certa condizione è vera. Questo tipo di ciclo è ideale quando il numero di iterazioni non è noto in anticipo. Dovrebbe essere utilizzato quando vogliamo ripetere una certa azione fino a che si verifichi una certa condizione.
 
     while condizione:
         #Blocco di codice da eseguire finché la condizione è vera
@@ -594,7 +640,8 @@ Esempio di Ciclo con Istruzione Condizionale:
         contatore += 1
 
 ### Ciclo For
-iterare su una sequenza di elementi, come una lista, una stringa o una sequenza numerica. Questa struttura di controllo consente di eseguire un blocco di codice per ogni elemento nella sequenza.
+iterare su una sequenza di elementi, come una lista, una stringa o una sequenza numerica. Questa struttura di controllo consente di eseguire un blocco di codice per ogni elemento nella sequenza. Andrebbe usato quando vogliamo ripetere la stessa azione su tutti
+gli elementi di un iterabile.
 
     for elemento in sequenza:
         # Blocco di codice da eseguire per ogni elemento nella sequenza
@@ -804,6 +851,89 @@ Una funzione può restituire valori diversi in base a condizioni specifiche all�
 
 Qui, la funzione controlla_parita restituisce una stringa diversa a seconda che il numero sia pari o dispari.
 
+## PRE e POST condizioni
+Correttezza: per qualsiasi input che verifichi le pre-condizioni,essa produce sempre output che verificano le post-condizioni.
+
+PRE: indica ciò che si assume vero prima della chiamata della funzione (di solito sono restrizioni sui valori dei parametri o collegamenti tra essi).
+
+POST: indica una proprietà che, assumendo vera la PRE, sarà vera dopo che la funzione sarà eseguita.
+
+Invariante: Specifica per i cicli, è una proprietà che è vera prima di eseguire la prima volta un ciclo (prima della condizione), all’inizio di ogni iterazione e subito dopo il ciclo. Dimostra vera la post.
+
+    # Pre : float(a,b) coefficienti dell’equazione, a!=0
+    # Pos : float(x) = soluzione dell’equazione ax+b
+    def eq_gradoI(a,b) :
+        return -float(b)/a
+
+##Funzioni annidate
+Si può definire funzioni all’interno di definizioni di altre funzioni e per queste valgono le stesse regole di visibilita dei comuni riferimenti.
+
+    def stampa_molti(a):
+        def stampa_uno(s):
+            print("chiamata stampa")
+            print("-> %s"%s)
+        print("chiamata esterna")
+        for s in a:
+            stampa_uno(s)
+
+    stampa_molti([1,"ciao",5.67])
+    stampa_uno("wow")
+
+    #OUT:
+    chiamata esterna
+    #chiamata stampa
+    #-> 1
+    #chiamata stampa
+    #-> ciao
+    #chiamata stampa
+    #-> 5.67
+    #Traceback (most recent call last):
+    #File "C:\UNI\CORSI\PYBOOK\ESCULAPIO\CODICE\annidate.py", line 10,
+    #in <module>
+    #stampa_uno("wow")
+    #NameError: name ’stampa_uno’ is not defined
+
+Il codice seguente dimostra che la funzione stampa_uno() è visibile solo all’interno di (ovvero e locale a) stampa_molti()
+
+### Descrittori di lista
+è un meccanismo che permette di personalizzare il comportamento di un attributo della classe che è una lista, possiamo verificare l’appartenenza o meno di un determinato oggetto ad un iterabile (_x_ successivamente) con l’operatore _in_ e _not in_
+Data una collezione iterabile e possibile costruire una lista avente valori calcolati come funzione dei valori nella collezione. La sintassi generale
+
+    [f(x) for x in IT]
+
+dove _f()_ e una espressione applicata ai valori _x_ ottenuti via via dall’iteratore _IT_
+
+    [x*x for x in range(10)]
+    #OUT: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+è possibile anche indicare una condizione che devono soddisfare i valori ottenuti dalla collezione con la sintassi
+
+    [f(x) for x in IT if g(x)]
+
+cioè “vogliamo tutti i valori f(x) per ogni x in IT per i quali l’espressione g(x) e vera”
+
+    [x*x for x in range(10) if x%2]
+    #OUT: [1, 9, 25, 49, 81] 
+
+Si possono annidare descrittori di lista. Un sesmpio è il calcolo della matrice trasposta di una matrice rappresentata come lista di liste (le liste interne rappresentano le righe della matrice). 
+
+    #matrice 3×4 (listadi 3 liste di lunghezza 4)
+    mat = [[1, 2, 3, 4],[5, 6, 7, 8],[9, 10, 11, 12]]
+    [[riga[i] for riga in mat] for i in range(4)]
+    #OUT: [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
+
+I descrittori di lista possono comprendere anche piu di un iteratore ( ` for). La sintassi
+
+    [f(x1,x2,...,xn) for x1 in IT1 if g(x1)
+                     for x2 in IT2(x1) if h(x1,x2)
+                      ...
+                     for xn in ITn(x1,x2,...,xn-1) if z(x1,x2,...,xn)]
+
+.......................
+
+    [(x, y) for x in [-1,2] for y in [3,2] if x != y]
+    #OUT: [(-1, 3), (-1, 2), (2, 3)]
+
 ### Ricorsione
 La ricorsione è una tecnica in cui una funzione richiama se stessa per risolvere un problema. Questa tecnica è spesso utilizzata per problemi che possono essere suddivisi in sottoproblemi simili.
 Una funzione ricorsiva è una funzione che richiama se stessa all’interno del proprio corpo. Quando si utilizza la ricorsione, è fondamentale avere una condizione di uscita (o caso base) per evitare di entrare in un ciclo infinito di chiamate ricorsive.
@@ -831,7 +961,7 @@ Chiamata ricorsiva: La funzione richiama se stessa con un input modificato, avvi
 In questo esempio la funzione conta richiama se stessa con un valore ridotto (n - 1), avvicinandosi al caso base (n <= 0).
 Quando la ricorsione raggiunge il caso base, la funzione termina, e i numeri vengono stampati nell’ordine corretto.
 
-antaggi
+Vantaggi
 Semplicità: La ricorsione può semplificare la soluzione di problemi complessi che hanno una struttura naturale ricorsiva, come alberi, grafi e sequenze.
 Eleganza: Spesso, le soluzioni ricorsive risultano più eleganti e più concise rispetto alle soluzioni iterative.
 Svantaggi
@@ -861,6 +991,18 @@ Ecco una funzione ricorsiva per calcolare il numero di Fibonacci n-esimo:
     print(fibonacci(6))  # Output: 8
 
 Spesso un problema che può essere risolto con la ricorsione può anche essere risolto con un approccio iterativo, come i loop for o while.
+
+Si poù usare la ricorsione in avanti e all’indietro, i due tipi di funzioni differiscono solo per la posizione della chiamata ricorsiva rispetto alle altre istruzioni della funzione.
+
+    def avanti(s) :
+        if not s: return
+        print s[0],
+        avanti(s[1:])
+        
+    def indietro(s) :
+        if not s: return
+        indietro(s[1:])
+        print s[0],
 
 In generale:
 La ricorsione può essere più intuitiva per problemi che hanno una struttura naturale ricorsiva, come la traversata di alberi.
@@ -899,6 +1041,8 @@ Quando si utilizzano variabili sia locali che globali con lo stesso nome, l’am
 
 ## Esercizi funzioni
 https://codegrind.it/esercizi/python/funzioni
+Esercizi descrittori di lista pag 51,52
+Esercizi pre e post pag 87,88
 
 ## Programmazione ad oggetti
 La Programmazione Orientata agli Oggetti (OOP) è un paradigma di programmazione che consente di organizzare e strutturare il codice in modo più modulare e intuitivo. In OOP, i concetti del mondo reale sono rappresentati da “oggetti” e “classi”, che contengono attributi (proprietà) e metodi (azioni). Python è un linguaggio che supporta pienamente la programmazione orientata agli oggetti e ci offre strumenti potenti per creare, utilizzare e manipolare oggetti. Esploriamo i concetti fondamentali dell’OOP in Python.
@@ -1414,6 +1558,11 @@ https://codegrind.it/esercizi/python/moduli
 https://codegrind.it/esercizi/python/math
 
 ## Algoritmi 
+
+### Strutture dati
+#### Liste concatenate pag108
+#### BST
+
 ### Complessità computazionale
 La complessità computazionale rappresenta una misura dell’efficienza di un algoritmo nel risolvere un dato problema. Tale efficienza si puo misurare seguendo diverse dimensioni, quali il tempo di esecuzione o la memoria
 richiesta da un algoritmo.
@@ -1432,5 +1581,6 @@ caso medio: comportamento in media al variare dei dati possibili in ingresso.
 ### Ordinamento
 ### Ricerca per chiave
 ### Backtracking
+
 
 
